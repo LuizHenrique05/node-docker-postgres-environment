@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    command: npm start
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/usr/app
+    links:
+      - db
+  db:
+    image: postgres
+    container_name: "postgres"
+    environment:
+      POSTGRES_PASSWORD: '12345678'
+      POSTGRES_USER: 'project'
+    ports:
+      - "5432:5432"
